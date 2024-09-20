@@ -85,8 +85,11 @@ def add_expense():
 @login_required
 def view_expenses():
     # expenses = Expense.query.all()
+    user_id = session['user_id']
+    user_expenses = UserExpense.query.filter_by(user_id=user_id).all()
+    total_expense = sum(user_expense.amount_owed for user_expense in user_expenses)
     expenses = Expense.query.join(UserExpense).filter(UserExpense.user_id == session['user_id']).all()
-    return render_template('view_expenses.html', expenses=expenses)
+    return render_template('view_expenses.html', expenses=expenses,total_expense=total_expense)
 
 @app.route('/delete_expense/<int:expense_id>', methods=['POST'])
 @login_required

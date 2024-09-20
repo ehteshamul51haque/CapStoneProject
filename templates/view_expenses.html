@@ -4,6 +4,7 @@
 
 {% block content %}
 <h1>View Expenses</h1>
+<p><strong>Total Expenses: ₹ {{ "{:,.2f}".format(total_expense) }}</strong></p>
 <div class="row">
     {% for expense in expenses %}
     <div class="col-md-4 mb-3">
