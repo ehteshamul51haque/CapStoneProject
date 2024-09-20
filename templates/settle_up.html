@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block title %}Settle Up{% endblock %}
+
+{% block content %}
+<h1>Settle Up</h1>
+<form method="POST">
+    <div class="form-group">
+        <label for="expense_id">Select Expense:</label>
+        <select name="expense_id" class="form-control">
+            {% for expense in expenses %}
+                <option value="{{ expense.id }}">{{ expense.description }} - ${{ expense.amount }}</option>
+            {% endfor %}
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label for="user_id">Select User:</label>
+        <select name="user_id" class="form-control">
+            {% for user in users %}
+                <option value="{{ user.id }}">{{ user.username }}</option>
+            {% endfor %}
+        </select>
+    </div>
+
+    <button type="submit" class="btn btn-success">Settle Up</button>
+</form>
+<a href="{{ url_for('index') }}" class="btn btn-secondary mt-2">Back to Home</a>
+{% endblock %}

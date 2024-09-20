@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+<h1>Welcome to Expense Splitter</h1>
+<p>Manage your shared expenses easily!</p>
+
+{% if session.get('user_id') %}
+    <a href="{{ url_for('add_expense') }}" class="btn btn-primary">Add Expense</a>
+    <a href="{{ url_for('view_expenses') }}" class="btn btn-secondary">View Expenses</a>
+{% else %}
+    <a href="{{ url_for('login') }}" class="btn btn-success">Login</a>
+    <a href="{{ url_for('register') }}" class="btn btn-warning">Register</a>
+{% endif %}
+{% endblock %}
